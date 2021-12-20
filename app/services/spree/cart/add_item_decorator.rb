@@ -22,7 +22,7 @@ module Spree::Cart::AddItemDecorator
     line_item.target_shipment = options[:shipment] if options.key? :shipment
     line_item.public_metadata = public_metadata.to_h if public_metadata
     line_item.private_metadata = private_metadata.to_h if private_metadata
-    line_item.save!
+    return failure(line_item) unless line_item.save
 
     line_item.reload.update_price
 
