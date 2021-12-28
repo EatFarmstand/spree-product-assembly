@@ -11,7 +11,6 @@ module Spree
           Spree::AssembliesPart.create(assembly: @product.master, part: part.master)
         end
         @product.reload # For parts to show
-        @product.save # For allergens to be built
       end
 
       private

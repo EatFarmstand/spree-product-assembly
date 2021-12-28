@@ -6,8 +6,6 @@
     var $pouch_selection = $("div[id='product_pouch_selection_field']")
     var $pouch_selection_fields = $("select[id='part_pouch']")
 
-    var $allergens = $("div[id='product_allergens_field']")
-
     var $pouch_type = $("div[id='product_pouch_type_field']")
     var $pouch_type_select = $("select[id='product_pouch_type']")
 
@@ -17,7 +15,6 @@
       if (checked) {
         $pouch_type_select.prop('required', true)
         $pouch_type.show()
-        $allergens.show()
 
         $individual_sale_checkbox.prop('checked', false)
         $individual_sale_checkbox.trigger('change')
@@ -25,7 +22,6 @@
         $type_check_boxes.prop('checked', false);
         $pouch_type_select.prop('required', false)
 
-        $allergens.hide()
         $pouch_type.hide()
       }
     })
