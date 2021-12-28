@@ -2,7 +2,7 @@ module Spree
   class AssignPartToBundleForm
     include ActiveModel::Validations
 
-    validates :quantity, numericality: {greater_than: 0}
+    validates :quantity, numericality: { greater_than: 0 }
 
     attr_reader :product, :part_options
 
@@ -12,15 +12,25 @@ module Spree
     end
 
     def submit
-      if valid?
-        assemblies_part.update(attributes)
-      end
+      assemblies_part.update(attributes) if valid?
+    end
+
+    def assemblies_part
+      @assemblies_part ||= if given_id?
+                             Spree::AssembliesPart.find(part_options[:id])
+                           else
+                             Spree::AssembliesPart.find_or_initialize_by(
+                               variant_selection_deferred: variant_selection_deferred?,
+                               assembly_id: assembly_id,
+                               part_id: part_id
+                             )
+                           end
     end
 
     private
 
     def attributes
-      part_options.reject {|k, v| k.to_sym == :part_id}
+      part_options.reject { |k, _v| k.to_sym == :part_id }
     end
 
     def given_id?
@@ -53,20 +63,6 @@ module Spree
 
     def quantity
       part_options[:count].to_i
-    end
-
-    def assemblies_part
-      @assemblies_part ||= begin
-        if given_id?
-          Spree::AssembliesPart.find(part_options[:id])
-        else
-          Spree::AssembliesPart.find_or_initialize_by(
-            variant_selection_deferred: variant_selection_deferred?,
-            assembly_id: assembly_id,
-            part_id: part_id
-          )
-        end
-      end
     end
   end
 end

@@ -12,3 +12,5 @@ en:
     part_of_bundle: 'Part of bundle %{sku}'
     selected_quantity_not_available: Selected quantity not available
     user_selectable: User Selectable
+    invalid_type: has an invalid type
+    no_duplicate_pouch: can't have a duplicate pouch

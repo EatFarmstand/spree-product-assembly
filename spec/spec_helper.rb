@@ -1,7 +1,7 @@
 # Configure Rails Environment
 ENV['RAILS_ENV'] = 'test'
 
-require File.expand_path('../dummy/config/environment.rb', __FILE__)
+require File.expand_path('dummy/config/environment.rb', __dir__)
 
 require 'spree_dev_tools/rspec/spec_helper'
 
@@ -14,3 +14,4 @@ RSpec.configure do |config|
     ex.run_with_retry retry: 3
   end
 end
+

@@ -1,0 +1,20 @@
+<div data-hook="admin_product_form_pouch_type">
+ <%= f.field_container :pouch_type, class: ['form-group'], style: @product.can_be_part? ? '' : 'display: none' do %>
+   <%= f.label :pouch_type %> <span class="required">*</span>
+   <%= f.error_message_on :pouch_type %><br>
+   <% Spree::Product::POUCH_TYPES.each do |type| %>
+     <%= f.label type %>
+     <%= f.check_box :pouch_type, { multiple: false, class: 'form-control' }, type, nil %>
+   <% end %>
+ <% end %>
+</div>
+
+<script type='text/javascript'>
+  var $type_check_boxes = $("input[id='product_pouch_type']");
+
+  // Only allow one type checkbox to be active
+  $type_check_boxes.click(function(event) {
+    $type_check_boxes.prop('checked', false);
+    $(this).prop('checked', true);
+  })
+</script>

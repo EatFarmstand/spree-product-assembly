@@ -1,0 +1,42 @@
+<script type='text/javascript'>
+  $(document).ready(function(){
+    var $can_be_part_checkbox = $("input[id='product_can_be_part']")
+    var $individual_sale_checkbox = $("input[id='product_individual_sale']")
+
+    var $pouch_selection = $("div[id='product_pouch_selection_field']")
+    var $pouch_selection_fields = $("select[id='part_pouch']")
+
+    var $pouch_type = $("div[id='product_pouch_type_field']")
+    var $pouch_type_select = $("select[id='product_pouch_type']")
+
+    // Ensure the pouch_type_select field is properly hidden
+    $can_be_part_checkbox.change(function(event){
+      var checked = $can_be_part_checkbox.is(":checked")
+      if (checked) {
+        $pouch_type_select.prop('required', true)
+        $pouch_type.show()
+
+        $individual_sale_checkbox.prop('checked', false)
+        $individual_sale_checkbox.trigger('change')
+      } else {
+        $type_check_boxes.prop('checked', false);
+        $pouch_type_select.prop('required', false)
+
+        $pouch_type.hide()
+      }
+    })
+
+    $individual_sale_checkbox.change(function(event){
+      var checked = $individual_sale_checkbox.is(":checked")
+      if (checked) {
+        $pouch_selection_fields.prop('required', true)
+        $pouch_selection.show()
+        $can_be_part_checkbox.prop('checked', false)
+        $can_be_part_checkbox.trigger('change')
+      } else {
+        $pouch_selection_fields.prop('required', false)
+        $pouch_selection.hide()
+      }
+    })
+  });
+</script>
