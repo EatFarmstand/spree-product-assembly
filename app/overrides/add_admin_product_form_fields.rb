@@ -1,6 +1,6 @@
-Deface::Override.new(:virtual_path => "spree/admin/products/_form",
-                     :name => "product_assembly_admin_product_form_right",
-                     :insert_after => "[data-hook='admin_product_form_description']",
-                     :partial => "spree/admin/products/product_assembly_fields",
-                     :original => "eb9ecf7015fa51bb0adf7dafd7e6fdf1d652025d",
-                     :disabled => false)
+Deface::Override.new(virtual_path: 'spree/admin/products/_form',
+                     name: 'product_assembly_admin_product_types',
+                     insert_before: "[data-hook='admin_product_form_taxons']",
+                     original: 'efc1fd2863d6d030307ae3e030f1a7ceb4e95943',
+                     partial: 'spree/admin/products/pouch_options',
+                     disabled: false)

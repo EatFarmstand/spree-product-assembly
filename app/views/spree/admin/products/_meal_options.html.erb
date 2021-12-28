@@ -1,0 +1,15 @@
+<div data-hook="admin_product_form_pouch_selection">
+ <%= f.field_container :pouch_selection, class: ['form-group'], style: @product.individual_sale? ? '' : 'display: none' do %>
+   <%= f.label :pouch_selection %> <span class="required">*</span>
+   <% Spree::Product::POUCH_TYPES.each do |type| %>
+     <%= f.error_message_on "#{type}_pouch".to_s %><br>
+     <%= f.label type %>
+     <%= select_tag "#{type}_pouch_id".to_s, options_for_select(Spree::Product.send("#{type}_pouches".to_s).collect { |p| [p.name, p.id] } ),
+                         id: "part_pouch",
+                         name: "part[#{type}_pouch_id]",
+                         class: 'form-control',
+                         required: :required,
+                         prompt: 'Choose one of the below' %>
+   <% end %>
+ <% end %>
+</div>
