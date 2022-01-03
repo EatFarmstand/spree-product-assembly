@@ -21,7 +21,7 @@ module Spree::ProductDecorator
     base.validates_presence_of :pouch_type, if: :can_be_part?
     base.validates :individual_sale?, presence: false, if: :can_be_part?
 
-    base.validates :can_be_part?, presence: false, if: :individual_sale?
+    base.validate :can_be_part?, presence: false, if: :individual_sale?
     base.validate :pouch_type, presence: false, if: :individual_sale?
 
     base.scope :main_pouches, -> { where(pouch_type: 'main') }
