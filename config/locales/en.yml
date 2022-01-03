@@ -14,3 +14,4 @@ en:
     user_selectable: User Selectable
     invalid_type: has an invalid type
     no_duplicate_pouch: can't have a duplicate pouch
+    meal_cannot_have_type: can't be on meal
