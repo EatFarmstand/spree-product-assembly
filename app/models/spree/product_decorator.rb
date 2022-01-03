@@ -18,11 +18,11 @@ module Spree::ProductDecorator
     base.validate :assembly_cannot_be_part, if: :assembly?
 
     base.enum pouch_type: Hash[*POUCH_TYPES.collect { |v| [v, v] }.flatten], _suffix: true
-    base.validates_presence_of :pouch_type, if: :can_be_part?
+    base.validates :pouch_type, presence: true, if: :can_be_part?
     base.validates :individual_sale?, presence: false, if: :can_be_part?
 
-    base.validate :can_be_part?, presence: false, if: :individual_sale?
-    base.validate :pouch_type, presence: false, if: :individual_sale?
+    base.validates :can_be_part?, presence: false, if: :individual_sale?
+    base.validates :pouch_type, presence: false, if: :individual_sale?
 
     base.scope :main_pouches, -> { where(pouch_type: 'main') }
     base.scope :side_pouches, -> { where(pouch_type: 'side') }
