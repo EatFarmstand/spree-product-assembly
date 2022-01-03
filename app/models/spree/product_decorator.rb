@@ -22,7 +22,7 @@ module Spree::ProductDecorator
     base.validates :individual_sale?, presence: false, if: :can_be_part?
 
     base.validates :can_be_part?, presence: false, if: :individual_sale?
-    base.validates :pouch_type, presence: false, if: :individual_sale?
+    base.validate :no_pouch_type, if: :individual_sale?
 
     base.scope :main_pouches, -> { where(pouch_type: 'main') }
     base.scope :side_pouches, -> { where(pouch_type: 'side') }
@@ -45,6 +45,10 @@ module Spree::ProductDecorator
 
   def assembly_cannot_be_part
     errors.add(:can_be_part, Spree.t(:assembly_cannot_be_part)) if can_be_part?
+  end
+
+  def no_pouch_type
+    errors.add(:pouch_type, Spree.t(:meal_cannot_have_type)) if pouch_type.present?
   end
 
   private
