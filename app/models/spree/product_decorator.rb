@@ -6,7 +6,7 @@ module Spree::ProductDecorator
                                      source: :parts_variants
     base.has_many :parts, through: :assemblies_parts
 
-    base.scope :individual_saled, -> { where(individual_sale: true) }
+    base.scope :individually_sold, -> { where(individual_sale: true) }
 
     base.scope :search_can_be_part, lambda { |query|
       not_deleted.available.joins(:master)
