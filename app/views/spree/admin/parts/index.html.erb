@@ -8,8 +8,8 @@
   :locals => {:current => "Parts"} %>
 
 <div id="product_parts" data-product-slug="<%= product.slug %>">
-  <% @parts.each do |pouch| %>
-    <%= render partial: 'pouch', locals: { pouch: pouch } %>
+  <% @parts.each do |p| %>
+    <%= render partial: 'pouch', locals: { part: p, pouch: p.part.product } %>
   <% end %>
 </div>
 
