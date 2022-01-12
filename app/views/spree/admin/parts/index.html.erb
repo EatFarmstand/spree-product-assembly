@@ -8,9 +8,7 @@
   :locals => {:current => "Parts"} %>
 
 <div id="product_parts" data-product-slug="<%= product.slug %>">
-  <% @parts.each do |p| %>
-    <%= render partial: 'pouch', locals: { part: p, pouch: p.part.product } %>
-  <% end %>
+    <%= render partial: 'pouches', locals: { parts: @parts } %>
 </div>
 
 <%= form_tag('#') do %>
