@@ -8,7 +8,7 @@ class Spree::Admin::PartsController < Spree::Admin::BaseController
   def remove
     assembly_part = Spree::AssembliesPart.find(params[:id])
     assembly_part.destroy
-    render 'spree/admin/parts/update_parts_table'
+    redirect_back fallback_location: admin_product_parts_url(product)
   end
 
   def set_count
@@ -37,7 +37,7 @@ class Spree::Admin::PartsController < Spree::Admin::BaseController
   def save_part(part_params)
     form = Spree::AssignPartToBundleForm.new(product, part_params)
     if form.submit
-      render 'spree/admin/parts/update_parts_table'
+      redirect_back fallback_location: admin_product_parts_url(product)
     else
       error_message = form.assemblies_part.errors.full_messages.to_sentence
       render json: error_message.to_json, status: 422
