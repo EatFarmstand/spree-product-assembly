@@ -1,6 +1,8 @@
-<%= content_tag :li if @product.individual_sale? do %>
-  <%= link_to_with_icon 'th',
-    Spree.t(:pouches),
-    admin_product_parts_url(@product),
-    class: "nav-link #{'active' if current == 'Parts'}"%>
+<% if @product.individual_sale? %>
+  <%= content_tag :li do %>
+    <%= link_to_with_icon 'th',
+      Spree.t(:pouches),
+      admin_product_parts_url(@product),
+      class: "nav-link #{'active' if current == 'Parts'}"%>
+  <% end %>
 <% end %>
